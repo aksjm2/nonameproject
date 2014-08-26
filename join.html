@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>:: Join Page ::</title>
+  <h2>Please Enter information</h2>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                    reader.onload = function(e) { 
+                    //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                        $('#blah').attr('src', e.target.result);
+                        //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정
+                        //(아래 코드에서 읽어들인 dataURL형식)
+                    }                    
+                    reader.readAsDataURL(input.files[0]);
+                    //File내용을 읽어 dataURL형식의 문자열로 저장
+                }
+            }//readURL()--
+    
+            //file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
+            $("#imgInp").change(function(){
+                readURL(this);
+            });
+         });
+   
+  </script>
+ </head>
+ <body>
+  <form method='post' action='join.php'>
+  Email : <input type='text' name='uid' id='uid'>@<input type='text' name='umail' id='umail'><br>
+  Password : <input type='password' name='pw' id='pw'><br>
+  Repeat : <input type='password' name='rpw' id='rpw'><br>
+  Name : <input type ='text' name = 'name' id ='name'><br>
+  Birth : <input type='text' name = 'year' id='year' size=4>year <input type='text' name='month' id='month' size=2>month <input type='text' name='day' id='day' size=2>day<br>
+  <input type='file' id="imgInp" /><br/>
+  <img id="blah" src="#" alt="your image" />
+  </form>
+  <input type ='submit' value='확인'>
+  <input type = 'reset' value='취소'>
+  </form>
+ </body>
+</html>
