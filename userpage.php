@@ -13,6 +13,19 @@ else{
 }
 
 echo "안녕하세요 ".$_SESSION['user']->name."님";
+$q = "select picPath from user where username = '".$_SESSION['user']->username."'";
+$rs = query($q);
+while($row = fetch($rs)){
+	if(strlen($row['picPath'])>0)
+	{
+		$picpath = $row['picPath'];
+		echo "<img src=".$picpath." width='100' height=100>";
+	}
+	else
+	{
+		//프로필 사진 없을때 처리
+	}
+}
 ?>
 
 

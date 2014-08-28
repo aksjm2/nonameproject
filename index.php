@@ -13,8 +13,8 @@ require_once('header.php');
 </head>
 <body>
 <form method="post" action="loginCheck.php">
-<input type="text" name="username"><br>
-<input type="text" name="password"><br>
+<input type="text" name="firstname">@<input type="text" name="lastname"><br>
+<input type="password" name="password"><br>
 <input type="submit" value="로그인">
 <input type = "button" value="회원가입" onclick="join();">
 </form>

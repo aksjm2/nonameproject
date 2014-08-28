@@ -9,20 +9,20 @@ require_once('header.php');
  </head>
  <body>
 <?php
-$id = $_POST['uid'];
-$mail = $_POST['umail'];
-$fid = $id.$mail;
+$fid = $_POST['firstname']."@".$_POST['lastname'];
 $upw = $_POST['pw'];
 $uname = $_POST['name'];
-$ubirth = date("Y-m-d",$_POST['year'].$_POST['month'].$_POST['day']);
-$gender = $_POST['sex'];
+$ubirth = date("Y-m-d",strtotime($_POST['year'].$_POST['month'].$_POST['day']));
+$gender = $_POST['gender'];
 date_default_timezone_set("Asia/Seoul");
 $registerdate = date("Y-m-d h:i:s",time());
 
-$file_name = $_FILES['upload_file']['name'];
 $tmp_file = $_FILES['upload_file']['tmp_name'];
 
-$file_path = './image/'.$file_name;
+$temp = explode(".",$_FILES['upload_file']['name']);
+$ext = end($temp);
+
+$file_path = './image/'.$fid.".".$ext;
 
 $r = move_uploaded_file($tmp_file, $file_path);
 
@@ -35,9 +35,9 @@ else
 	echo "error";
 }
 
-$q = "insert into user(username,password,gender,dateofbirth,name,registerDate) values('$fid','$upw','$gender','$ubirth','$uname','$registerdate')";
-//query($q);
-//href('index.php');
+$q = "insert into user(username,password,gender,dateofbirth,name,registerDate,picPath) values('$fid','$upw','$gender','$ubirth','$uname','$registerdate','$file_path')";
+query($q);
+href('index.php');
 ?>
 </body>
 </html>

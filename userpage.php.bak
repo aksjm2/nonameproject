@@ -13,6 +13,15 @@ else{
 }
 
 echo "¾È³çÇÏ¼¼¿ä ".$_SESSION['user']->name."´Ô";
+$q = "select picPath from user where username = '".$_SESSION['user']->username."'";
+$rs = query($q);
+while($row = fetch($rs)){
+	if(strlen($row['picPath'])>0)
+	{
+		$picpath = $row['picPath'];
+		echo "<img src=".$picpath." width='100' height=100>";
+	}
+}
 ?>
 
 

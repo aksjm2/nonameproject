@@ -1,7 +1,7 @@
 <?php
 require_once('header.php');
 
-$username = $_POST['username'];
+$username = $_POST['firstname']."@".$_POST['lastname'];
 $password = $_POST['password'];
 
 $q = "select * from user where username = '$username' and password = '$password'";
