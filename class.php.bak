@@ -59,7 +59,7 @@ class friend extends user{
 		echo "<input type='hidden' name='delete' id='delete'>\n";
 		while ($row = fetch($rs)){
 			$cnt++;
-			$eq = "select * from userevaluate where userID = '".$this->IDuser."' and evaluateID = '".$row['IDevaluate']+"'";
+			$eq = "select * from userevaluate where userID = ".$this->IDuser." and evaluateID = ".$row['IDevaluate'];
 			$ers = query($eq);
 			$average = 0;
 			if ($erow = fetch($ers)){
